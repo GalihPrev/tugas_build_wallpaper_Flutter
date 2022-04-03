@@ -1,6 +1,6 @@
 import 'package:tugas_build_wallpaper/model/categories_model.dart';
 
-String apiKEY = "[API_KEY]";
+String apiKEY = "563492ad6f9170000100000108d4741cfd9e4b8db4dc15ec15bbe0da";
 
 List<CategoriesModel> getCategories() {
   List<CategoriesModel> categories = [];
