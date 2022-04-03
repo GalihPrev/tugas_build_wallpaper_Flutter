@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tugas_build_wallpaper/data/data.dart';
 import 'package:tugas_build_wallpaper/model/categories_model.dart';
 import 'package:tugas_build_wallpaper/widgets/widgets.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,8 +24,25 @@ TextEditingController searchController = new TextEditingController();
 
 ScrollController _scrollController = new ScrollController();
 
-@override
 class _HomePageState extends State<HomePage> {
+  // getTrendingWallpaper() async {
+  //   await http.get("https://api.pexels.com/v1/curated?per_page=1",
+  //       headers: {"Authorization": apiKEY}).then((value) {
+  //     //print(value.body);
+
+  //     Map<String, dynamic> jsonData = jsonDecode(value.body);
+  //     jsonData["photos"].forEach((element) {
+  //       //print(element);
+  //       PhotosModel photosModel = new PhotosModel();
+  //       photosModel = PhotosModel.fromMap(element);
+  //       photos.add(photosModel);
+  //       //print(photosModel.toString()+ "  "+ photosModel.src.portrait);
+  //     });
+
+  //     setState(() {});
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,12 +104,26 @@ class CategoriesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(right: 4),
       child: Stack(children: [
+        ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              imgUrl,
+              height: 50,
+              width: 100,
+              fit: BoxFit.cover,
+            )),
         Container(
-          child: Image.network(imgUrl), //Gajelas kwkw
-        ),
-        Container(
-          child: Text(title), // Gejlas
+          color: Colors.black26,
+          height: 50,
+          width: 100,
+          alignment: Alignment.center,
+          child: Text(
+            title,
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w500, fontSize: 16),
+          ), // Gejlas
         )
       ]),
     );
