@@ -5,6 +5,7 @@ import 'package:tugas_build_wallpaper/data/data.dart';
 import 'package:tugas_build_wallpaper/model/categories_model.dart';
 import 'package:tugas_build_wallpaper/model/wallpaper_model.dart';
 import 'package:tugas_build_wallpaper/views/categories.dart';
+import 'package:tugas_build_wallpaper/views/image_view.dart';
 import 'package:tugas_build_wallpaper/views/search.dart';
 import 'package:tugas_build_wallpaper/widgets/widgets.dart';
 import 'package:http/http.dart' as http;
@@ -127,9 +128,8 @@ class CategoriesTile extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => Categorie(
-                     categorieName : title.toLowerCase(),
+                      categorieName: title.toLowerCase(),
                     )));
-      
       }),
       child: Container(
         margin: EdgeInsets.only(right: 4),
@@ -153,7 +153,9 @@ class CategoriesTile extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.w500, fontSize: 16),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16),
             ), // Gejlas
           )
         ]),
