@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class ImageView extends StatefulWidget {
@@ -35,19 +37,25 @@ class _ImageViewState extends State<ImageView> {
             children: [
               GestureDetector(
                 onTap: () {
+                  // _save();
                   Navigator.pop(context);
                 },
                 child: Stack(
                   children: [
                     Container(
                       height: 50,
+                      decoration: BoxDecoration(
+                        color: Color(0xff1c1B1B).withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                       width: MediaQuery.of(context).size.width / 2,
-                      color: Color(0xff1c1B1B).withOpacity(0.8),
                     ),
                     Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width / 2,
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8,
+                      ),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.white70, width: 1),
                         borderRadius: BorderRadius.circular(30),
@@ -76,9 +84,14 @@ class _ImageViewState extends State<ImageView> {
                 ),
               ),
               SizedBox(height: 20),
-              Text(
-                "Cancel",
-                style: TextStyle(color: Colors.white),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
               SizedBox(height: 50),
             ],
@@ -88,10 +101,27 @@ class _ImageViewState extends State<ImageView> {
     );
   }
 
-  _save() async {
-    await _askPermission();
-    var response = await Dio().get(
-      widget.imgPath,options: (responseType : ResponseType.bytes)
-    )
-  }
+  // _save() async {
+  //   if (Platform.isAndroid) {
+  //     await _askPermission();
+  //   }
+
+  //   var response = await Dio().get(widget.imgPath,
+  //       options: Options(responseType: ResponseType.bytes));
+  //   final result =
+  //       await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
+  //   print(result);
+  //   Navigator.pop(context);
+  // }
+
+  // _askPermission() async {
+  //   if (Platform.isIOS) {
+  //     /*Map<PermissionGroup, PermissionStatus> permissions =
+  //         */
+  //     await PermissionHandler().requestPermissions([PermissionGroup.photos]);
+  //   } else {
+  //     /* PermissionStatus permission = */ await PermissionHandler()
+  //         .checkPermissionStatus(PermissionGroup.storage);
+  //   }
+  // }
 }
